@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ARMAdmission.Admission_DBDataSetTableAdapters;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,11 +30,9 @@ namespace ARMAdmission
             if (!isUserAdmin)
             {
 
-                this.tabControl2.TabPages.Remove(abit_add_page);
-                this.tabControl2.TabPages.Remove(abit_mark_page);
-                this.tabControl1.TabPages.Remove(dictionary_page);
-                this.tabControl1.TabPages.Remove(competition_page);
-                this.tabControl3.TabPages.Remove(statement_add_page);
+                tabControl1.TabPages.Remove(abit_page);
+                tabControl1.TabPages.Remove(competition_page);
+                tabControl1.TabPages.Remove(statement_page);
                 
             }
 
@@ -1465,5 +1464,161 @@ namespace ARMAdmission
         {
             this.clearOrder();
         }
+
+        private void вихідToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "admission_DBDataSet2.AbitDocs". При необходимости она может быть перемещена или удалена.
+            //this.abitDocsTableAdapter.Fill(this.admission_DBDataSet2.AbitDocs);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "admission_DBDataSet1.AbitFullInfo". При необходимости она может быть перемещена или удалена.
+            //this.abitFullInfoTableAdapter.Fill(this.admission_DBDataSet1.AbitFullInfo);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "admission_DBDataSet.SpecCardReport". При необходимости она может быть перемещена или удалена.
+            //this.specCardReportTableAdapter.Fill(this.admission_DBDataSet.SpecCardReport);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "admission_DBDataSet.SpecCardReport". При необходимости она может быть перемещена или удалена.
+            //this.specCardReportTableAdapter.Fill(this.admission_DBDataSet.SpecCardReport);
+
+
+            //this.reportViewer1.RefreshReport();
+            this.reportViewer3.RefreshReport();
+            this.reportViewer4.RefreshReport();
+            this.reportViewer4.RefreshReport();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand com = new SqlCommand("FindAbit", this.connection);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("SearchString", report_allinfo_search.Text);
+                this.AutocompleteListBuilde(report_allinfo_listbox, com);
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void report_allinfo_listbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string q = $"select * from SpecCardReport where abit_id = '{report_allinfo_listbox.SelectedValue}'";
+            SqlDataAdapter adapter = new SqlDataAdapter(q, this.connection);
+            DataSet report = new DataSet();
+            adapter.Fill(report);
+            adapter.Dispose();
+            specCardReportBindingSource.DataSource = report.Tables[0];
+
+            q = $"select * from AbitFullInfo where abit_id = '{report_allinfo_listbox.SelectedValue}'";
+            adapter = new SqlDataAdapter(q, this.connection);
+            report = new DataSet();
+            adapter.Fill(report);
+            adapter.Dispose();
+            abitFullInfoBindingSource.DataSource = report.Tables[0];
+
+            q = $"select * from AbitDocs where docs_id = '{report_allinfo_listbox.SelectedValue}'";
+            adapter = new SqlDataAdapter(q, this.connection);
+            report = new DataSet();
+            adapter.Fill(report);
+            adapter.Dispose();
+            abitDocsBindingSource.DataSource = report.Tables[0];
+
+            reportViewer4.RefreshReport();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string q = $"select * from SpecCardReport where YEAR(submission_date) between '{report_all_data.Text}' and '{report_all_data.Text}' and spec_id = '{report_all_spec_box.SelectedValue}'";
+                SqlDataAdapter adapter = new SqlDataAdapter(q,this.connection);
+                DataSet report = new DataSet();
+                adapter.Fill(report);
+                adapter.Dispose();
+                specCardReportBindingSource.DataSource = report.Tables[0];
+                this.reportViewer1.RefreshReport();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void report_all_university_box_TextUpdate(object sender, EventArgs e)
+        {
+            string q = $"SELECT TOP 20 university_id, university_name from university where university_name like '{report_all_university_box.Text}%'";
+            this.AutocompleteDictBuilder(this.report_all_university_box, q);
+        }
+
+        private void report_all_faculty_box_TextUpdate(object sender, EventArgs e)
+        {
+            string q = $"SELECT TOP 20 faculty_id, faculty_name from faculty where faculty_name like '{report_all_faculty_box.Text}%' and university_id='{report_all_university_box.SelectedValue}'";
+            this.AutocompleteDictBuilder(this.report_all_faculty_box, q);
+        }
+
+        private void report_all_spec_box_TextUpdate(object sender, EventArgs e)
+        {
+            string q = $"Select TOP 20 spec_id, spec_name from spec where faculty_id = '{report_all_faculty_box.SelectedValue}' and spec_name LIKE '{report_all_spec_box.Text}%'";
+            this.AutocompleteDictBuilder(this.report_all_spec_box, q);
+        }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControl5_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                string q = $"select * from SpecCardReport where submission_date between '{DateTime.Today}' and '{DateTime.Today}'";
+                SqlDataAdapter adapter = new SqlDataAdapter(q, this.connection);
+                DataSet report = new DataSet();
+                adapter.Fill(report);
+                adapter.Dispose();
+                specCardReportBindingSource.DataSource = report.Tables[0];
+                this.reportViewer2.RefreshReport();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string q = $"select * from SpecEnteredRepoort where YEAR(submission_date) between '{entered_date.Text}' and '{entered_date.Text}' and spec_id = '{entered_spec_box.SelectedValue}'";
+            SqlDataAdapter adapter = new SqlDataAdapter(q, this.connection);
+            DataSet report = new DataSet();
+            adapter.Fill(report);
+            adapter.Dispose();
+            specCardReportBindingSource.DataSource = report.Tables[0];
+            this.reportViewer3.RefreshReport();
+        }
+
+        private void entered_university_box_TextUpdate(object sender, EventArgs e)
+        {
+            string q = $"SELECT TOP 20 university_id, university_name from university where university_name like '{entered_university_box.Text}%'";
+            this.AutocompleteDictBuilder(this.entered_university_box, q);
+        }
+
+        private void entered_faculty_box_TextUpdate(object sender, EventArgs e)
+        {
+            string q = $"SELECT TOP 20 faculty_id, faculty_name from faculty where faculty_name like '{entered_faculty_box.Text}%' and university_id='{entered_university_box.SelectedValue}'";
+            this.AutocompleteDictBuilder(this.entered_faculty_box, q);
+        }
+
+        private void entered_spec_box_TextUpdate(object sender, EventArgs e)
+        {
+            string q = $"Select TOP 20 spec_id, spec_name from spec where faculty_id = '{entered_faculty_box.SelectedValue}' and spec_name LIKE '{entered_spec_box.Text}%'";
+            this.AutocompleteDictBuilder(this.entered_spec_box, q);
+        }
     }
+ 
 }

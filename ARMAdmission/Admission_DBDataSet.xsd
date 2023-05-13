@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Admission_DBDataSet" targetNamespace="http://tempuri.org/Admission_DBDataSet.xsd" xmlns:mstns="http://tempuri.org/Admission_DBDataSet.xsd" xmlns="http://tempuri.org/Admission_DBDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Admission_DBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Admission_DBConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ARMAdmission.Properties.Settings.GlobalReference.Default.Admission_DBConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SpecCardReportTableAdapter" GeneratorDataComponentClassName="SpecCardReportTableAdapter" Name="SpecCardReport" UserDataComponentName="SpecCardReportTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Admission_DBConnectionString (Settings)" DbObjectName="Admission_DB.dbo.SpecCardReport" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT card_id, abit_id, full_name, attestation_mark, rate, priority, university_name, faculty_name, spec_name, submission_date, spec_id FROM dbo.SpecCardReport</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="card_id" DataSetColumn="card_id" />
+              <Mapping SourceColumn="abit_id" DataSetColumn="abit_id" />
+              <Mapping SourceColumn="full_name" DataSetColumn="full_name" />
+              <Mapping SourceColumn="attestation_mark" DataSetColumn="attestation_mark" />
+              <Mapping SourceColumn="rate" DataSetColumn="rate" />
+              <Mapping SourceColumn="priority" DataSetColumn="priority" />
+              <Mapping SourceColumn="university_name" DataSetColumn="university_name" />
+              <Mapping SourceColumn="faculty_name" DataSetColumn="faculty_name" />
+              <Mapping SourceColumn="spec_name" DataSetColumn="spec_name" />
+              <Mapping SourceColumn="submission_date" DataSetColumn="submission_date" />
+              <Mapping SourceColumn="spec_id" DataSetColumn="spec_id" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Admission_DBDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Admission_DBDataSet" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Admission_DBDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SpecCardReport" msprop:Generator_RowClassName="SpecCardReportRow" msprop:Generator_RowEvHandlerName="SpecCardReportRowChangeEventHandler" msprop:Generator_RowDeletedName="SpecCardReportRowDeleted" msprop:Generator_RowDeletingName="SpecCardReportRowDeleting" msprop:Generator_RowEvArgName="SpecCardReportRowChangeEvent" msprop:Generator_TablePropName="SpecCardReport" msprop:Generator_RowChangedName="SpecCardReportRowChanged" msprop:Generator_UserTableName="SpecCardReport" msprop:Generator_RowChangingName="SpecCardReportRowChanging" msprop:Generator_TableClassName="SpecCardReportDataTable" msprop:Generator_TableVarName="tableSpecCardReport">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="card_id" msprop:Generator_UserColumnName="card_id" msprop:Generator_ColumnPropNameInTable="card_idColumn" msprop:Generator_ColumnPropNameInRow="card_id" msprop:Generator_ColumnVarNameInTable="columncard_id">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="14" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="abit_id" msprop:Generator_UserColumnName="abit_id" msprop:Generator_ColumnPropNameInTable="abit_idColumn" msprop:Generator_ColumnPropNameInRow="abit_id" msprop:Generator_ColumnVarNameInTable="columnabit_id">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="full_name" msdata:ReadOnly="true" msprop:Generator_UserColumnName="full_name" msprop:Generator_ColumnPropNameInTable="full_nameColumn" msprop:Generator_ColumnPropNameInRow="full_name" msprop:Generator_ColumnVarNameInTable="columnfull_name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="386" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="attestation_mark" msprop:Generator_UserColumnName="attestation_mark" msprop:Generator_ColumnPropNameInTable="attestation_markColumn" msprop:Generator_ColumnPropNameInRow="attestation_mark" msprop:Generator_ColumnVarNameInTable="columnattestation_mark" type="xs:double" />
+              <xs:element name="rate" msdata:ReadOnly="true" msprop:Generator_UserColumnName="rate" msprop:Generator_ColumnPropNameInTable="rateColumn" msprop:Generator_ColumnPropNameInRow="rate" msprop:Generator_ColumnVarNameInTable="columnrate" type="xs:int" minOccurs="0" />
+              <xs:element name="priority" msprop:Generator_UserColumnName="priority" msprop:Generator_ColumnPropNameInTable="priorityColumn" msprop:Generator_ColumnPropNameInRow="priority" msprop:Generator_ColumnVarNameInTable="columnpriority" type="xs:int" />
+              <xs:element name="university_name" msprop:Generator_UserColumnName="university_name" msprop:Generator_ColumnPropNameInTable="university_nameColumn" msprop:Generator_ColumnPropNameInRow="university_name" msprop:Generator_ColumnVarNameInTable="columnuniversity_name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="faculty_name" msprop:Generator_UserColumnName="faculty_name" msprop:Generator_ColumnPropNameInTable="faculty_nameColumn" msprop:Generator_ColumnPropNameInRow="faculty_name" msprop:Generator_ColumnVarNameInTable="columnfaculty_name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="128" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="spec_name" msprop:Generator_UserColumnName="spec_name" msprop:Generator_ColumnPropNameInTable="spec_nameColumn" msprop:Generator_ColumnPropNameInRow="spec_name" msprop:Generator_ColumnVarNameInTable="columnspec_name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="128" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="submission_date" msprop:Generator_UserColumnName="submission_date" msprop:Generator_ColumnPropNameInTable="submission_dateColumn" msprop:Generator_ColumnPropNameInRow="submission_date" msprop:Generator_ColumnVarNameInTable="columnsubmission_date" type="xs:dateTime" />
+              <xs:element name="spec_id" msprop:Generator_UserColumnName="spec_id" msprop:Generator_ColumnPropNameInTable="spec_idColumn" msprop:Generator_ColumnPropNameInRow="spec_id" msprop:Generator_ColumnVarNameInTable="columnspec_id">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
